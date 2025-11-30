@@ -1,0 +1,12 @@
+**/.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.cache
+*.vshost.*
+*.csproj.user
+appsettings.Development.json
+/bin/
+/obj/
+/.vs/
