@@ -1,0 +1,68 @@
+﻿@model Episode
+@{
+    ViewData["Title"] = "Edit Episode";
+}
+
+<h1>Edit Episode</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SeasonNumber" class="control-label"></label>
+                <input asp-for="SeasonNumber" class="form-control" />
+                <span asp-validation-for="SeasonNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EpisodeNumber" class="control-label"></label>
+                <input asp-for="EpisodeNumber" class="form-control" />
+                <span asp-validation-for="EpisodeNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AirDate" class="control-label"></label>
+                <input asp-for="AirDate" type="date" class="form-control" />
+                <span asp-validation-for="AirDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" step="0.1" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SeriesId" class="control-label">Series</label>
+                <select asp-for="SeriesId" class="form-control" asp-items="ViewBag.SeriesId"></select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

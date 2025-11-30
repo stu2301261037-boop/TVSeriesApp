@@ -1,0 +1,126 @@
+﻿@model TVSeriesApp.Models.Series
+
+@{
+    ViewData["Title"] = "Series Details";
+}
+
+<h1>Series Details</h1>
+
+<div>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="text-center mb-4">
+                <img src="@Model.PosterUrl" alt="@Model.Title"
+                     class="img-fluid rounded shadow"
+                     style="max-width: 300px;"
+                     onerror="this.src='/images/series/default-series.jpg'">
+            </div>
+        </div>
+
+        
+        <div class="col-md-8">
+            <h4>@Model.Title</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.ReleaseDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ReleaseDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Seasons)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Seasons)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Rating)/10
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Genre)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Genre)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.IsCompleted)
+                </dt>
+                <dd class="col-sm-9">
+                    @(Model.IsCompleted ? "Yes" : "No")
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    else
+    {
+        <div class="mt-5">
+            <h4>Cast</h4>
+            <div class="alert alert-info">
+                No cast information available for this series.
+            </div>
+        </div>
+    }
+
+    
+    @if (Model.Episodes != null && Model.Episodes.Any())
+    {
+        <div class="mt-5">
+            <h4>Episodes</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Season</th>
+                            <th>Episode</th>
+                            <th>Air Date</th>
+                            <th>Duration</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var episode in Model.Episodes.OrderBy(e => e.SeasonNumber).ThenBy(e => e.EpisodeNumber))
+                        {
+                            <tr>
+                                <td>@episode.Title</td>
+                                <td>@episode.SeasonNumber</td>
+                                <td>@episode.EpisodeNumber</td>
+                                <td>@episode.AirDate.ToString("MMM dd, yyyy")</td>
+                                <td>@episode.Duration min</td>
+                                <td>@episode.Rating/10</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="mt-4">
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+

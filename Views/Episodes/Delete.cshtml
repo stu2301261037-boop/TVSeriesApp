@@ -1,0 +1,34 @@
+﻿@model Episode
+@{
+    ViewData["Title"] = "Delete Episode";
+}
+
+<h1>Delete Episode</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Episode</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Title</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Title)</dd>
+
+        <dt class="col-sm-2">Series</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Series.Title)</dd>
+
+        <dt class="col-sm-2">Season</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.SeasonNumber)</dd>
+
+        <dt class="col-sm-2">Episode</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EpisodeNumber)</dd>
+
+        <dt class="col-sm-2">Air Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.AirDate)</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

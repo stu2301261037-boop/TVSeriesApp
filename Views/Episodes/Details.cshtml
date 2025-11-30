@@ -1,0 +1,40 @@
+﻿@model Episode
+@{
+    ViewData["Title"] = "Episode Details";
+}
+
+<h1>Episode Details</h1>
+
+<div>
+    <h4>Episode</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Title</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Title)</dd>
+
+        <dt class="col-sm-2">Series</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Series.Title)</dd>
+
+        <dt class="col-sm-2">Season</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.SeasonNumber)</dd>
+
+        <dt class="col-sm-2">Episode</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EpisodeNumber)</dd>
+
+        <dt class="col-sm-2">Air Date</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.AirDate)</dd>
+
+        <dt class="col-sm-2">Duration</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Duration) minutes</dd>
+
+        <dt class="col-sm-2">Rating</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Rating)</dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

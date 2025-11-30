@@ -1,0 +1,28 @@
+﻿@model List<TVSeriesApp.Controllers.UserRoleViewModel>
+@{
+    ViewData["Title"] = "Users Management";
+}
+
+<h1>Users Management</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@string.Join(", ", user.Roles)</td>
+                <td>
+                    <a asp-action="EditUser" asp-route-id="@user.UserId" class="btn btn-warning">Edit Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
